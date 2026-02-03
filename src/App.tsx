@@ -59,11 +59,10 @@ const AppContent: React.FC = () => {
         },
       }}
     >
-      <AntApp>
-        {/* 全局春节装饰 */}
-        <SpringFestivalDecorations />
-        
-        <Layout className="app-layout">
+      {/* 全局春节装饰 */}
+      <SpringFestivalDecorations />
+      
+      <Layout className="app-layout">
         <Header className="app-header">
           <div className="app-logo">
             <FireOutlined style={{ fontSize: 24, color: '#ff4d4f' }} />
@@ -81,7 +80,6 @@ const AppContent: React.FC = () => {
           {renderContent(currentKey)}
         </Content>
       </Layout>
-      </AntApp>
     </ConfigProvider>
   );
 };
@@ -91,7 +89,9 @@ const App: React.FC = () => {
     <ScheduleProvider>
       <ContactProvider>
         <AppProvider>
-          <AppContent />
+          <AntApp>
+            <AppContent />
+          </AntApp>
         </AppProvider>
       </ContactProvider>
     </ScheduleProvider>
