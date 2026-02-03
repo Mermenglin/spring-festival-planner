@@ -1,0 +1,11 @@
+找到的CSS内容：
+
+.spring-content.wide {
+  max-width: 9600px;
+  padding: 32px 48px;
+}
+
+.spring-timeline-container.wide {
+  max-width: 9200px;
+  margin: 0 auto;
+}

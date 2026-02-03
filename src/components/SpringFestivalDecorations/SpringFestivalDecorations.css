@@ -1,0 +1,310 @@
+/* 春节装饰 - 正式优雅版 - 性能优化 */
+
+.spring-festival-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* 雪花样式 */
+.snowflake {
+  position: absolute;
+  z-index: 49;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.snowflake:hover {
+  transform: scale(1.5) translateZ(0);
+}
+
+.snowflake-shape {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.snowflake-particle {
+  position: absolute;
+  z-index: 49;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* 顶部装饰条 */
+.header-accent-bar {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #ffd700 10%,
+    #ff4d4f 30%,
+    #ffd700 50%,
+    #ff4d4f 70%,
+    #ffd700 90%,
+    transparent 100%
+  );
+  z-index: 51;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.accent-line {
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 255, 255, 0.3) 20px,
+    rgba(255, 255, 255, 0.3) 40px
+  );
+}
+
+/* 优雅灯笼 - 性能优化 */
+.elegant-lantern {
+  position: absolute;
+  z-index: 51;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.elegant-lantern.left {
+  left: 30px;
+}
+
+.elegant-lantern.right {
+  right: 30px;
+}
+
+/* 灯笼摆动动画 */
+.swaying-lantern {
+  animation: lanternSway 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.elegant-lantern.left .swaying-lantern {
+  animation-delay: 0s;
+}
+
+.elegant-lantern.right .swaying-lantern {
+  animation-delay: 0.5s;
+}
+
+@keyframes lanternSway {
+  0%, 100% {
+    transform: rotate(-3deg) translateZ(0);
+  }
+  50% {
+    transform: rotate(3deg) translateZ(0);
+  }
+}
+
+.lantern-chain {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, #8b4513, #a0522d);
+}
+
+.lantern-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lantern-cap {
+  width: 36px;
+  height: 8px;
+  background: linear-gradient(135deg, #8b0000, #a52a2a);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.lantern-glass {
+  width: 44px;
+  height: 56px;
+  background: linear-gradient(135deg,
+    rgba(255, 0, 0, 0.9) 0%,
+    rgba(255, 77, 79, 0.8) 50%,
+    rgba(255, 0, 0, 0.9) 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 20px rgba(255, 77, 79, 0.4),
+    inset 0 0 15px rgba(255, 200, 200, 0.3);
+  border: 2px solid #ffd700;
+  animation: gentleGlow 4s ease-in-out infinite;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+}
+
+.lantern-character {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: characterShine 3s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+.lantern-base {
+  width: 32px;
+  height: 6px;
+  background: linear-gradient(135deg, #8b0000, #a52a2a);
+  border-radius: 2px;
+  margin-top: 2px;
+}
+
+.lantern-fringes {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.lantern-fringes span {
+  width: 2px;
+  height: 16px;
+  background: linear-gradient(to bottom, #ffd700, #ffed4e);
+  border-radius: 1px;
+  animation: fringeSway 3s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.lantern-fringes span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.lantern-fringes span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes gentleGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(255, 77, 79, 0.4),
+      inset 0 0 15px rgba(255, 200, 200, 0.3);
+    transform: scale(1) translateZ(0);
+  }
+  50% { 
+    box-shadow: 
+      0 0 30px rgba(255, 77, 79, 0.6),
+      inset 0 0 20px rgba(255, 200, 200, 0.5);
+    transform: scale(1.02) translateZ(0);
+  }
+}
+
+@keyframes characterShine {
+  0%, 100% { 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  50% { 
+    text-shadow: 
+      1px 1px 2px rgba(0, 0, 0, 0.3),
+      0 0 15px rgba(255, 215, 0, 0.8);
+  }
+}
+
+@keyframes fringeSway {
+  0%, 100% { transform: rotate(-3deg) translateZ(0); }
+  50% { transform: rotate(3deg) translateZ(0); }
+}
+
+/* 祥云 - 性能优化 */
+.floating-cloud {
+  position: absolute;
+  z-index: 49;
+  opacity: 0.6;
+  animation: cloudDrift 20s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.floating-cloud.left {
+  left: -150px;
+}
+
+.floating-cloud.right {
+  right: -150px;
+  animation-direction: reverse;
+}
+
+.cloud-svg {
+  width: 120px;
+  height: 50px;
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px)) translateZ(0);
+  }
+}
+
+/* 梅花 - 性能优化 */
+.plum-blossom {
+  position: absolute;
+  z-index: 48;
+  animation: blossomFloat 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.blossom-svg {
+  width: 24px;
+  height: 24px;
+  opacity: 0.4;
+}
+
+@keyframes blossomFloat {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg) translateZ(0);
+    opacity: 0.4;
+  }
+  50% { 
+    transform: translateY(-10px) rotate(5deg) translateZ(0);
+    opacity: 0.6;
+  }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .elegant-lantern {
+    display: none;
+  }
+  
+  .floating-cloud {
+    display: none;
+  }
+  
+  .plum-blossom {
+    display: none;
+  }
+}

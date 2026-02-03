@@ -1,0 +1,35 @@
+.settings-page {
+  min-height: calc(100vh - 64px);
+  background: #f0f2f5;
+  padding: 24px;
+}
+
+.settings-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-header {
+  margin-bottom: 24px;
+}
+
+.settings-card {
+  margin-bottom: 24px;
+  border-radius: 8px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+[data-theme='dark'] .settings-page {
+  background: #141414;
+}
+
+[data-theme='dark'] .settings-card {
+  background: #1f1f1f;
+  border-color: #303030;
+}

@@ -1,0 +1,427 @@
+/* 春节主题 - 整体样式 - 增强版 */
+
+.app-layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 50%, #ffebee 100%);
+}
+
+/* 春节喜庆头部 - 增强版 */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 70px;
+  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 50%, #ff4d4f 100%);
+  background-size: 200% 200%;
+  animation: headerGradient 8s ease infinite;
+  box-shadow: 0 4px 20px rgba(255, 77, 79, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 4px solid #ffd700;
+  border-bottom-style: double;
+}
+
+@keyframes headerGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);
+  letter-spacing: 2px;
+}
+
+/* 导航菜单春节样式 - 增强版 */
+.app-menu {
+  flex: 1;
+  justify-content: flex-end;
+  border: none;
+  background: transparent;
+}
+
+.app-menu .ant-menu-item {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 3px solid transparent;
+  border-radius: 8px 8px 0 0;
+  padding: 0 20px;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.app-menu .ant-menu-item-selected {
+  color: #ffd700 !important;
+  border-bottom: 3px solid #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.3);
+}
+
+.app-menu .ant-menu-item:hover {
+  color: #ffd700 !important;
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.app-content {
+  flex: 1;
+  position: relative;
+  max-width: 2800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 深色模式适配 - 增强版 */
+[data-theme='dark'] .app-layout {
+  background: linear-gradient(135deg, #2a1f1f 0%, #1f1a1a 50%, #1a1515 100%);
+}
+
+[data-theme='dark'] .app-header {
+  background: linear-gradient(135deg, #8b0000 0%, #a52a2a 50%, #8b0000 100%);
+  animation: headerGradientDark 8s ease infinite;
+}
+
+@keyframes headerGradientDark {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-theme='dark'] .app-title {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+[data-theme='dark'] .app-menu .ant-menu-item {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+[data-theme='dark'] .app-menu .ant-menu-item-selected {
+  color: #ffd700 !important;
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 -2px 15px rgba(255, 215, 0, 0.4);
+}
+
+[data-theme='dark'] .app-menu .ant-menu-item:hover {
+  color: #ffd700 !important;
+  background: rgba(255, 215, 0, 0.15);
+}
+
+/* 联系人页面春节样式 - 增强版 */
+.contacts-page {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 50%, #ffebee 100%);
+  padding: 24px;
+}
+
+.contacts-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contacts-header {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: 3px solid #ffccc7;
+  box-shadow: 0 6px 20px rgba(255, 77, 79, 0.15);
+  overflow: hidden;
+}
+
+.contacts-header .ant-card-body {
+  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 50%, #fff1f0 100%);
+  background-size: 200% 200%;
+  animation: cardGradient 6s ease infinite;
+  padding: 20px 24px;
+}
+
+@keyframes cardGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.contacts-list-card {
+  border-radius: 16px;
+  border: 2px solid #ffccc7;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .contacts-page {
+  background: linear-gradient(135deg, #2a1f1f 0%, #1f1a1a 50%, #1a1515 100%);
+}
+
+[data-theme='dark'] .contacts-header {
+  border-color: #8b0000;
+  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .contacts-header .ant-card-body {
+  background: linear-gradient(135deg, #3a1f1f 0%, #4a2a2a 50%, #3a1f1f 100%);
+}
+
+[data-theme='dark'] .contacts-list-card {
+  background: #1f1f1f;
+  border-color: #8b0000;
+}
+
+/* 设置页面春节样式 - 增强版 */
+.settings-page {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 50%, #ffebee 100%);
+  padding: 24px;
+}
+
+.settings-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-header {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: 3px solid #ffccc7;
+  overflow: hidden;
+}
+
+.settings-header .ant-card-body {
+  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 50%, #fff1f0 100%);
+  background-size: 200% 200%;
+  animation: cardGradient 6s ease infinite;
+  padding: 20px 24px;
+}
+
+.settings-card {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 2px solid #ffccc7;
+  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.1);
+  transition: all 0.3s ease;
+}
+
+.settings-card:hover {
+  box-shadow: 0 4px 20px rgba(255, 77, 79, 0.2);
+  transform: translateY(-2px);
+}
+
+[data-theme='dark'] .settings-page {
+  background: linear-gradient(135deg, #2a1f1f 0%, #1f1a1a 50%, #1a1515 100%);
+}
+
+[data-theme='dark'] .settings-header {
+  border-color: #8b0000;
+}
+
+[data-theme='dark'] .settings-header .ant-card-body {
+  background: linear-gradient(135deg, #3a1f1f 0%, #4a2a2a 50%, #3a1f1f 100%);
+}
+
+[data-theme='dark'] .settings-card {
+  background: #1f1f1f;
+  border-color: #8b0000;
+}
+
+[data-theme='dark'] .settings-card:hover {
+  box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
+}
+
+/* 按钮春节样式 - 增强版 */
+.ant-btn-primary {
+  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.4);
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.ant-btn-primary:hover {
+  background: linear-gradient(135deg, #ff7875 0%, #ff4d4f 100%);
+  box-shadow: 0 6px 18px rgba(255, 77, 79, 0.5);
+  transform: translateY(-2px);
+}
+
+.ant-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* 表格春节样式 - 增强版 */
+.ant-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ant-table-thead > tr > th {
+  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 100%);
+  color: #ff4d4f;
+  font-weight: bold;
+  border-bottom: 2px solid #ffccc7;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: #fff5f5 !important;
+}
+
+/* 模态框春节样式 - 增强版 */
+.ant-modal-header {
+  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 100%);
+  border-bottom: 3px solid #ffccc7;
+  padding: 16px 24px;
+}
+
+.ant-modal-title {
+  color: #ff4d4f;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.ant-modal-content {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* 表单春节样式 - 增强版 */
+.ant-form-item-label > label {
+  color: #333;
+  font-weight: 500;
+}
+
+.ant-input,
+.ant-select-selector {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.ant-input:hover,
+.ant-select:hover .ant-select-selector {
+  border-color: #ff7875;
+}
+
+.ant-input:focus,
+.ant-select-focused .ant-select-selector {
+  border-color: #ff4d4f;
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.1);
+}
+
+/* 标签春节样式 - 增强版 */
+.ant-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.ant-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 卡片春节样式 - 增强版 */
+.ant-card {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.ant-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* 时间线春节样式 - 增强版 */
+.ant-timeline-item-tail {
+  border-left: 3px solid #ffccc7;
+}
+
+.ant-timeline-item-head {
+  background: #fff;
+  border: 3px solid #ffccc7;
+}
+
+/* 统计数字春节样式 - 增强版 */
+.ant-statistic-title {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ant-statistic-content {
+  font-size: 28px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.ant-statistic:hover .ant-statistic-content {
+  transform: scale(1.05);
+}
+
+/* 滚动条样式 - 春节主题 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ffccc7 0%, #ff7875 100%);
+  border-radius: 5px;
+  border: 2px solid #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ff7875 0%, #ff4d4f 100%);
+}
+
+/* 添加节日粒子背景效果 */
+.app-content::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 77, 79, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 120, 117, 0.02) 0%, transparent 50%);
+}
+
+[data-theme='dark'] .app-content::before {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 77, 79, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 120, 117, 0.03) 0%, transparent 50%);
+}
