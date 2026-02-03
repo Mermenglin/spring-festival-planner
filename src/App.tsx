@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, ConfigProvider, theme } from 'antd';
+import { Layout, Menu, ConfigProvider, theme, App as AntApp } from 'antd';
 import { CalendarOutlined, ContactsOutlined, SettingOutlined, FireOutlined } from '@ant-design/icons';
 import { ScheduleProvider } from '@/store/scheduleStore';
 import { ContactProvider } from '@/store/contactStore';
@@ -59,10 +59,11 @@ const AppContent: React.FC = () => {
         },
       }}
     >
-      {/* 全局春节装饰 */}
-      <SpringFestivalDecorations />
-      
-      <Layout className="app-layout">
+      <AntApp>
+        {/* 全局春节装饰 */}
+        <SpringFestivalDecorations />
+        
+        <Layout className="app-layout">
         <Header className="app-header">
           <div className="app-logo">
             <FireOutlined style={{ fontSize: 24, color: '#ff4d4f' }} />
@@ -80,6 +81,7 @@ const AppContent: React.FC = () => {
           {renderContent(currentKey)}
         </Content>
       </Layout>
+      </AntApp>
     </ConfigProvider>
   );
 };
