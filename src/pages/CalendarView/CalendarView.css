@@ -258,7 +258,8 @@
 }
 
 .add-schedule-btn-fixed,
-.firework-btn-fixed {
+.firework-btn-fixed,
+.stop-firework-btn-fixed {
   box-shadow: 
     0 4px 15px rgba(0, 0, 0, 0.15),
     0 2px 8px rgba(255, 77, 79, 0.3);
@@ -266,13 +267,19 @@
   border-radius: 24px;
   font-weight: 600;
   height: 56px;
-  padding: 0 32px;
+  padding: 0; /* 移除 padding 以便固定宽度居中 */
   position: relative;
   overflow: hidden;
+  width: 160px !important;
+  min-width: 160px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-schedule-btn-fixed::before,
-.firework-btn-fixed::before {
+.firework-btn-fixed::before,
+.stop-firework-btn-fixed::before {
   content: '';
   position: absolute;
   top: 0;
@@ -284,7 +291,8 @@
 }
 
 .add-schedule-btn-fixed:hover,
-.firework-btn-fixed:hover {
+.firework-btn-fixed:hover,
+.stop-firework-btn-fixed:hover {
   transform: translateY(-4px) scale(1.05);
   box-shadow: 
     0 8px 25px rgba(0, 0, 0, 0.2),
@@ -293,7 +301,8 @@
 }
 
 .add-schedule-btn-fixed:hover::before,
-.firework-btn-fixed:hover::before {
+.firework-btn-fixed:hover::before,
+.stop-firework-btn-fixed:hover::before {
   left: 100%;
 }
 
@@ -1044,17 +1053,15 @@
 
 /* 宽屏容器样式 */
 .spring-content.wide {
-  max-width: 90vw;
-  width: 50%;
-  min-width: 1200px;
+  max-width: 95vw;
+  width: 100%;
   padding: 32px 48px;
   margin: 0 auto;
 }
 
 .spring-timeline-container.wide {
-  max-width: 90vw;
+  max-width: 95vw;
   width: 100%;
-  min-width: 1100px;
   margin: 0 auto;
 }
 

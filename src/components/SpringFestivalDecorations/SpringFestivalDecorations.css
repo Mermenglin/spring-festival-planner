@@ -1,4 +1,4 @@
-/* 春节装饰 - 正式优雅版 - 性能优化 */
+/* 春节装饰 - 传统红色风格 */
 
 .spring-festival-decorations {
   position: fixed;
@@ -7,51 +7,17 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 50;
+  z-index: 150;
   overflow: hidden;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-/* 雪花样式 */
-.snowflake {
-  position: absolute;
-  z-index: 49;
-  pointer-events: auto;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.snowflake:hover {
-  transform: scale(1.5) translateZ(0);
-}
-
-.snowflake-shape {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.snowflake-particle {
-  position: absolute;
-  z-index: 49;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 /* 顶部装饰条 */
 .header-accent-bar {
   position: absolute;
-  top: 64px;
+  top: 70px;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg,
     transparent 0%,
     #ffd700 10%,
@@ -62,8 +28,10 @@
     transparent 100%
   );
   z-index: 51;
-  will-change: transform;
-  transform: translateZ(0);
+  box-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.5),
+    0 0 20px rgba(255, 77, 79, 0.3);
+  animation: accentPulse 2s ease-in-out infinite;
 }
 
 .accent-line {
@@ -71,61 +39,87 @@
   background-image: repeating-linear-gradient(
     90deg,
     transparent,
-    transparent 20px,
-    rgba(255, 255, 255, 0.3) 20px,
-    rgba(255, 255, 255, 0.3) 40px
+    transparent 30px,
+    rgba(255, 255, 255, 0.4) 30px,
+    rgba(255, 255, 255, 0.4) 60px
   );
+  animation: shimmer 3s linear infinite;
 }
 
-/* 优雅灯笼 - 性能优化 */
-.elegant-lantern {
+@keyframes accentPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(255, 215, 0, 0.5),
+      0 0 20px rgba(255, 77, 79, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.8),
+      0 0 40px rgba(255, 77, 79, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-60px); }
+  100% { transform: translateX(60px); }
+}
+
+/* 雪花样式 */
+.snowflake {
+  position: absolute;
+  z-index: 49;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.snowflake:hover {
+  transform: scale(1.8);
+}
+
+.snowflake-shape {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 传统灯笼 */
+.traditional-lantern {
   position: absolute;
   z-index: 51;
   display: flex;
   flex-direction: column;
   align-items: center;
-  will-change: transform;
-  transform: translateZ(0);
+  animation: lanternFloat 4s ease-in-out infinite;
 }
 
-.elegant-lantern.left {
-  left: 30px;
+.traditional-lantern.left {
+  left: 25px;
 }
 
-.elegant-lantern.right {
-  right: 30px;
+.traditional-lantern.right {
+  right: 25px;
 }
 
-/* 灯笼摆动动画 */
-.swaying-lantern {
-  animation: lanternSway 4s ease-in-out infinite;
-  transform-origin: top center;
-}
-
-.elegant-lantern.left .swaying-lantern {
-  animation-delay: 0s;
-}
-
-.elegant-lantern.right .swaying-lantern {
-  animation-delay: 0.5s;
-}
-
-@keyframes lanternSway {
+@keyframes lanternFloat {
   0%, 100% {
-    transform: rotate(-3deg) translateZ(0);
+    transform: translateY(0) rotate(-2deg);
   }
   50% {
-    transform: rotate(3deg) translateZ(0);
+    transform: translateY(-8px) rotate(2deg);
   }
 }
 
 .lantern-chain {
-  width: 2px;
-  height: 30px;
-  background: linear-gradient(to bottom, #8b4513, #a0522d);
+  width: 3px;
+  height: 35px;
+  background: linear-gradient(to bottom, #8b4513, #a0522d, #8b4513);
+  box-shadow: 0 0 5px rgba(139, 69, 19, 0.5);
 }
 
-.lantern-main {
+.lantern-body {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -133,116 +127,144 @@
 }
 
 .lantern-cap {
-  width: 36px;
-  height: 8px;
-  background: linear-gradient(135deg, #8b0000, #a52a2a);
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  will-change: transform;
-  transform: translateZ(0);
+  width: 40px;
+  height: 10px;
+  background: linear-gradient(135deg, #8b0000, #a52a2a, #8b0000);
+  border-radius: 3px;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 215, 0, 0.3);
+}
+
+.lantern-cap.top {
+  border-radius: 3px 3px 1px 1px;
+}
+
+.lantern-cap.bottom {
+  border-radius: 1px 1px 3px 3px;
+  margin-top: 2px;
+}
+
+.lantern-glow {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, rgba(255, 77, 79, 0.4) 0%, transparent 70%);
+  top: 15px;
+  filter: blur(10px);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
 }
 
 .lantern-glass {
-  width: 44px;
-  height: 56px;
+  width: 50px;
+  height: 65px;
   background: linear-gradient(135deg,
-    rgba(255, 0, 0, 0.9) 0%,
-    rgba(255, 77, 79, 0.8) 50%,
-    rgba(255, 0, 0, 0.9) 100%
+    rgba(255, 0, 0, 0.95) 0%,
+    rgba(255, 77, 79, 0.9) 50%,
+    rgba(255, 0, 0, 0.95) 100%
   );
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 
-    0 0 20px rgba(255, 77, 79, 0.4),
-    inset 0 0 15px rgba(255, 200, 200, 0.3);
-  border: 2px solid #ffd700;
-  animation: gentleGlow 4s ease-in-out infinite;
-  will-change: transform, box-shadow;
-  transform: translateZ(0);
+    0 0 30px rgba(255, 77, 79, 0.5),
+    0 0 60px rgba(255, 77, 79, 0.3),
+    inset 0 0 20px rgba(255, 200, 200, 0.4);
+  border: 3px solid #ffd700;
+  position: relative;
+  overflow: hidden;
+}
+
+.lantern-glass::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: glassShine 4s linear infinite;
+}
+
+@keyframes glassShine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
 .lantern-character {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: #ffd700;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  animation: characterShine 3s ease-in-out infinite;
-  will-change: text-shadow;
+  text-shadow: 
+    0 0 5px rgba(255, 215, 0, 0.8),
+    0 0 10px rgba(255, 215, 0, 0.5),
+    0 0 20px rgba(255, 77, 79, 0.5);
+  animation: characterGlow 2s ease-in-out infinite;
+  z-index: 2;
 }
 
-.lantern-base {
-  width: 32px;
-  height: 6px;
-  background: linear-gradient(135deg, #8b0000, #a52a2a);
-  border-radius: 2px;
-  margin-top: 2px;
+@keyframes characterGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(255, 215, 0, 0.8),
+      0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(255, 215, 0, 1),
+      0 0 20px rgba(255, 215, 0, 0.8),
+      0 0 30px rgba(255, 77, 79, 0.8);
+  }
 }
 
 .lantern-fringes {
   display: flex;
-  gap: 4px;
-  margin-top: 4px;
+  gap: 3px;
+  margin-top: 3px;
 }
 
 .lantern-fringes span {
   width: 2px;
-  height: 16px;
-  background: linear-gradient(to bottom, #ffd700, #ffed4e);
+  height: 18px;
+  background: linear-gradient(to bottom, #ffd700, #ffed4e, #ffd700);
   border-radius: 1px;
-  animation: fringeSway 3s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
+  animation: fringeWave 2s ease-in-out infinite;
+  box-shadow: 0 0 3px rgba(255, 215, 0, 0.5);
 }
 
-.lantern-fringes span:nth-child(2) {
-  animation-delay: 0.2s;
+.lantern-fringes span:nth-child(1) { animation-delay: 0s; }
+.lantern-fringes span:nth-child(2) { animation-delay: 0.1s; }
+.lantern-fringes span:nth-child(3) { animation-delay: 0.2s; }
+.lantern-fringes span:nth-child(4) { animation-delay: 0.3s; }
+.lantern-fringes span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes fringeWave {
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(5deg) translateY(-3px); }
 }
 
-.lantern-fringes span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes gentleGlow {
-  0%, 100% { 
-    box-shadow: 
-      0 0 20px rgba(255, 77, 79, 0.4),
-      inset 0 0 15px rgba(255, 200, 200, 0.3);
-    transform: scale(1) translateZ(0);
-  }
-  50% { 
-    box-shadow: 
-      0 0 30px rgba(255, 77, 79, 0.6),
-      inset 0 0 20px rgba(255, 200, 200, 0.5);
-    transform: scale(1.02) translateZ(0);
-  }
-}
-
-@keyframes characterShine {
-  0%, 100% { 
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  }
-  50% { 
-    text-shadow: 
-      1px 1px 2px rgba(0, 0, 0, 0.3),
-      0 0 15px rgba(255, 215, 0, 0.8);
-  }
-}
-
-@keyframes fringeSway {
-  0%, 100% { transform: rotate(-3deg) translateZ(0); }
-  50% { transform: rotate(3deg) translateZ(0); }
-}
-
-/* 祥云 - 性能优化 */
+/* 祥云 */
 .floating-cloud {
   position: absolute;
-  z-index: 49;
-  opacity: 0.6;
-  animation: cloudDrift 20s linear infinite;
-  will-change: transform;
-  transform: translateZ(0);
+  z-index: 48;
+  animation: cloudDrift 25s linear infinite;
 }
 
 .floating-cloud.left {
@@ -255,48 +277,131 @@
 }
 
 .cloud-svg {
-  width: 120px;
-  height: 50px;
+  width: 140px;
+  height: 60px;
 }
 
 @keyframes cloudDrift {
   0% {
-    transform: translateX(0) translateZ(0);
+    transform: translateX(0);
+    opacity: 0;
   }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
   100% {
-    transform: translateX(calc(100vw + 150px)) translateZ(0);
+    transform: translateX(calc(100vw + 150px));
+    opacity: 0;
   }
 }
 
-/* 梅花 - 性能优化 */
+/* 梅花 */
 .plum-blossom {
   position: absolute;
-  z-index: 48;
-  animation: blossomFloat 6s ease-in-out infinite;
-  will-change: transform, opacity;
-  transform: translateZ(0);
+  z-index: 47;
+  animation: blossomFloat 5s ease-in-out infinite;
 }
 
 .blossom-svg {
-  width: 24px;
-  height: 24px;
-  opacity: 0.4;
+  width: 30px;
+  height: 30px;
 }
 
 @keyframes blossomFloat {
-  0%, 100% { 
-    transform: translateY(0) rotate(0deg) translateZ(0);
-    opacity: 0.4;
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
   }
-  50% { 
-    transform: translateY(-10px) rotate(5deg) translateZ(0);
-    opacity: 0.6;
+  25% {
+    transform: translateY(-8px) rotate(3deg) scale(1.05);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-2deg) scale(0.98);
+  }
+  75% {
+    transform: translateY(-12px) rotate(2deg) scale(1.02);
   }
 }
 
-/* 响应式 */
+/* 红包雨 */
+.red-packet-rain {
+  position: absolute;
+  top: -100px;
+  z-index: 45;
+  animation: packetFall 8s linear infinite;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.red-packet-rain:hover .red-packet {
+  transform: scale(1.1) rotate(5deg);
+}
+
+@keyframes packetFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+.red-packet {
+  width: 45px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 50%, #ff4d4f 100%);
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 
+    0 4px 15px rgba(255, 77, 79, 0.4),
+    inset 0 2px 5px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.red-packet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: linear-gradient(180deg, #ffd700 0%, #ffed4e 100%);
+  border-radius: 5px 5px 0 0;
+}
+
+.packet-top {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 6px;
+  background: #ffd700;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.packet-body {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.packet-symbol {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 响应式调整 */
 @media (max-width: 768px) {
-  .elegant-lantern {
+  .traditional-lantern {
     display: none;
   }
   
@@ -305,6 +410,21 @@
   }
   
   .plum-blossom {
+    display: none;
+  }
+  
+  .red-packet-rain {
+    display: none;
+  }
+  
+  .header-accent-bar {
+    top: 60px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-accent-bar {
     display: none;
   }
 }

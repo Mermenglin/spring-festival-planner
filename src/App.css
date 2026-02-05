@@ -1,26 +1,96 @@
-/* 春节主题 - 整体样式 - 增强版 */
+/* 春节主题 - 科技感增强版 2024 */
 
 .app-layout {
   min-height: 100vh;
-  background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 50%, #ffebee 100%);
+  background: linear-gradient(135deg, 
+    rgba(15, 8, 8, 0.85) 0%, 
+    rgba(30, 15, 15, 0.8) 50%, 
+    rgba(18, 10, 10, 0.85) 100%
+  );
+  position: relative;
+  z-index: 100;
 }
 
-/* 春节喜庆头部 - 增强版 */
+.app-layout::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(255, 77, 79, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 120, 117, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 科技感动态背景网格 */
+.app-layout::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 77, 79, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 77, 79, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* 科技感头部 */
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 32px;
   height: 70px;
-  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 50%, #ff4d4f 100%);
+  background: linear-gradient(135deg, 
+    rgba(139, 0, 0, 0.95) 0%, 
+    rgba(165, 42, 42, 0.9) 50%, 
+    rgba(139, 0, 0, 0.95) 100%
+  );
   background-size: 200% 200%;
-  animation: headerGradient 8s ease infinite;
-  box-shadow: 0 4px 20px rgba(255, 77, 79, 0.4);
+  animation: headerGradient 6s ease infinite;
+  box-shadow: 
+    0 4px 30px rgba(255, 77, 79, 0.4),
+    0 0 60px rgba(255, 77, 79, 0.2);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 4px solid #ffd700;
-  border-bottom-style: double;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, #ffd700, #ff4d4f, #ffd700) 1;
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 215, 0, 0.1) 20%, 
+      rgba(255, 215, 0, 0.1) 80%, 
+      transparent 100%
+    );
+  pointer-events: none;
 }
 
 @keyframes headerGradient {
@@ -38,18 +108,49 @@
 .app-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
 }
 
 .app-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);
-  letter-spacing: 2px;
+  background: linear-gradient(135deg, #fff 0%, #ffd700 50%, #fff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  letter-spacing: 3px;
+  animation: titleShine 3s linear infinite;
+  position: relative;
 }
 
-/* 导航菜单春节样式 - 增强版 */
+.app-title::after {
+  content: '春节日程规划助手';
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: blur(8px);
+  opacity: 0.5;
+  background: linear-gradient(135deg, #ff4d4f, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: -1;
+}
+
+@keyframes titleShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* 导航菜单科技感样式 */
 .app-menu {
   flex: 1;
   justify-content: flex-end;
@@ -59,24 +160,48 @@
 
 .app-menu .ant-menu-item {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 3px solid transparent;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 2px solid transparent;
   border-radius: 8px 8px 0 0;
-  padding: 0 20px;
-  margin: 0 4px;
+  padding: 0 24px;
+  margin: 0 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-menu .ant-menu-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
   transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.app-menu .ant-menu-item:hover::before {
+  width: 80%;
 }
 
 .app-menu .ant-menu-item-selected {
   color: #ffd700 !important;
-  border-bottom: 3px solid #ffd700;
-  background: rgba(255, 215, 0, 0.15);
-  box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.3);
+  background: rgba(255, 215, 0, 0.1);
+  box-shadow: 
+    0 -2px 15px rgba(255, 215, 0, 0.3),
+    inset 0 2px 10px rgba(255, 215, 0, 0.1);
+}
+
+.app-menu .ant-menu-item-selected::before {
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #ffd700, #ff4d4f, #ffd700, transparent);
 }
 
 .app-menu .ant-menu-item:hover {
   color: #ffd700 !important;
-  background: rgba(255, 215, 0, 0.1);
+  background: rgba(255, 215, 0, 0.08);
   transform: translateY(-2px);
 }
 
@@ -86,55 +211,278 @@
   max-width: 2800px;
   width: 100%;
   margin: 0 auto;
+  padding: 24px;
+  z-index: 10;
 }
 
-/* 深色模式适配 - 增强版 */
+/* 深色模式适配 */
 [data-theme='dark'] .app-layout {
-  background: linear-gradient(135deg, #2a1f1f 0%, #1f1a1a 50%, #1a1515 100%);
+  background: linear-gradient(135deg, 
+    rgba(10, 5, 5, 0.98) 0%, 
+    rgba(25, 15, 15, 0.95) 50%, 
+    rgba(15, 10, 10, 0.98) 100%
+  );
+}
+
+[data-theme='dark'] .app-layout::before {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(255, 77, 79, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 120, 117, 0.06) 0%, transparent 70%);
 }
 
 [data-theme='dark'] .app-header {
-  background: linear-gradient(135deg, #8b0000 0%, #a52a2a 50%, #8b0000 100%);
-  animation: headerGradientDark 8s ease infinite;
-}
-
-@keyframes headerGradientDark {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: linear-gradient(135deg, 
+    rgba(100, 0, 0, 0.95) 0%, 
+    rgba(130, 30, 30, 0.9) 50%, 
+    rgba(100, 0, 0, 0.95) 100%
+  );
+  box-shadow: 
+    0 4px 30px rgba(255, 77, 79, 0.5),
+    0 0 80px rgba(255, 77, 79, 0.3);
 }
 
 [data-theme='dark'] .app-title {
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.7);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
-[data-theme='dark'] .app-menu .ant-menu-item {
-  color: rgba(255, 255, 255, 0.85) !important;
+/* 卡片科技感动画 */
+.ant-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 77, 79, 0.2);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-[data-theme='dark'] .app-menu .ant-menu-item-selected {
-  color: #ffd700 !important;
-  background: rgba(255, 215, 0, 0.2);
-  box-shadow: 0 -2px 15px rgba(255, 215, 0, 0.4);
+.ant-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 77, 79, 0.05),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
-[data-theme='dark'] .app-menu .ant-menu-item:hover {
-  color: #ffd700 !important;
-  background: rgba(255, 215, 0, 0.15);
+.ant-card:hover::before {
+  left: 100%;
 }
 
-/* 联系人页面春节样式 - 增强版 */
+.ant-card:hover {
+  box-shadow: 
+    0 8px 30px rgba(255, 77, 79, 0.2),
+    0 0 60px rgba(255, 77, 79, 0.1);
+  transform: translateY(-4px);
+  border-color: rgba(255, 77, 79, 0.4);
+}
+
+[data-theme='dark'] .ant-card {
+  background: rgba(30, 20, 20, 0.95);
+  border-color: rgba(255, 77, 79, 0.3);
+}
+
+/* 按钮霓虹效果 */
+.ant-btn-primary {
+  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 50%, #ff4d4f 100%);
+  background-size: 200% 200%;
+  border: none;
+  box-shadow: 
+    0 4px 15px rgba(255, 77, 79, 0.4),
+    0 0 30px rgba(255, 77, 79, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ant-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.ant-btn-primary:hover::before {
+  left: 100%;
+}
+
+.ant-btn-primary:hover {
+  background-position: 100% 0;
+  box-shadow: 
+    0 6px 25px rgba(255, 77, 79, 0.5),
+    0 0 50px rgba(255, 77, 79, 0.3);
+  transform: translateY(-2px);
+}
+
+.ant-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(255, 77, 79, 0.3);
+}
+
+/* 表格科技感 */
+.ant-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ant-table-thead > tr > th {
+  background: linear-gradient(135deg, rgba(255, 241, 240, 0.95) 0%, rgba(255, 204, 199, 0.9) 100%);
+  color: #ff4d4f;
+  font-weight: bold;
+  border-bottom: 2px solid rgba(255, 77, 79, 0.3);
+  text-shadow: 0 0 10px rgba(255, 77, 79, 0.2);
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: rgba(255, 245, 245, 0.8) !important;
+}
+
+[data-theme='dark'] .ant-table-thead > tr > th {
+  background: linear-gradient(135deg, rgba(60, 30, 30, 0.95) 0%, rgba(80, 40, 40, 0.9) 100%);
+  border-color: rgba(255, 77, 79, 0.3);
+}
+
+/* 模态框发光效果 */
+.ant-modal-header {
+  background: linear-gradient(135deg, rgba(255, 241, 240, 0.95) 0%, rgba(255, 204, 199, 0.9) 100%);
+  border-bottom: 2px solid rgba(255, 77, 79, 0.3);
+  box-shadow: 0 2px 15px rgba(255, 77, 79, 0.2);
+}
+
+.ant-modal-title {
+  color: #ff4d4f;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(255, 77, 79, 0.2);
+}
+
+.ant-modal-content {
+  border-radius: 16px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.2),
+    0 0 60px rgba(255, 77, 79, 0.1);
+  border: 1px solid rgba(255, 77, 79, 0.2);
+}
+
+/* 输入框发光效果 */
+.ant-input,
+.ant-select-selector {
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.ant-input:hover,
+.ant-select:hover .ant-select-selector {
+  border-color: #ff7875;
+  box-shadow: 0 0 10px rgba(255, 120, 117, 0.2);
+}
+
+.ant-input:focus,
+.ant-select-focused .ant-select-selector {
+  border-color: #ff4d4f;
+  box-shadow: 
+    0 0 0 2px rgba(255, 77, 79, 0.1),
+    0 0 15px rgba(255, 77, 79, 0.2);
+}
+
+/* 标签发光 */
+.ant-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ant-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 15px rgba(255, 77, 79, 0.2);
+}
+
+/* 时间线科技感 */
+.ant-timeline-item-tail {
+  border-left: 3px solid rgba(255, 77, 79, 0.3);
+}
+
+.ant-timeline-item-head {
+  background: #fff;
+  border: 3px solid rgba(255, 77, 79, 0.5);
+  box-shadow: 0 0 10px rgba(255, 77, 79, 0.3);
+}
+
+/* 统计数字发光 */
+.ant-statistic-title {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ant-statistic-content {
+  font-size: 32px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ff4d4f, #ff7875);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.ant-statistic:hover .ant-statistic-content {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(255, 77, 79, 0.3));
+}
+
+/* 滚动条发光 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 10, 10, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(255, 77, 79, 0.6) 0%, rgba(255, 120, 117, 0.8) 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(20, 10, 10, 0.5);
+  box-shadow: 0 0 10px rgba(255, 77, 79, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(255, 120, 117, 0.8) 0%, rgba(255, 77, 79, 1) 100%);
+  box-shadow: 0 0 15px rgba(255, 77, 79, 0.5);
+}
+
+/* 联系人页面 */
 .contacts-page {
-  min-height: calc(100vh - 64px);
-  background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 50%, #ffebee 100%);
-  padding: 24px;
+  min-height: calc(100vh - 70px);
+  padding: 32px;
+  position: relative;
 }
 
 .contacts-content {
@@ -143,18 +491,21 @@
 }
 
 .contacts-header {
-  margin-bottom: 24px;
-  border-radius: 16px;
-  border: 3px solid #ffccc7;
-  box-shadow: 0 6px 20px rgba(255, 77, 79, 0.15);
+  margin-bottom: 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 77, 79, 0.3);
+  box-shadow: 
+    0 8px 30px rgba(255, 77, 79, 0.15),
+    0 0 60px rgba(255, 77, 79, 0.05);
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .contacts-header .ant-card-body {
-  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 50%, #fff1f0 100%);
+  background: linear-gradient(135deg, rgba(255, 241, 240, 0.95) 0%, rgba(255, 204, 199, 0.9) 50%, rgba(255, 241, 240, 0.95) 100%);
   background-size: 200% 200%;
-  animation: cardGradient 6s ease infinite;
-  padding: 20px 24px;
+  animation: cardGradient 8s ease infinite;
+  padding: 24px 32px;
 }
 
 @keyframes cardGradient {
@@ -170,34 +521,34 @@
 }
 
 .contacts-list-card {
-  border-radius: 16px;
-  border: 2px solid #ffccc7;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 77, 79, 0.2);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 [data-theme='dark'] .contacts-page {
-  background: linear-gradient(135deg, #2a1f1f 0%, #1f1a1a 50%, #1a1515 100%);
+  background: transparent;
 }
 
 [data-theme='dark'] .contacts-header {
-  border-color: #8b0000;
-  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+  border-color: rgba(255, 77, 79, 0.4);
+  background: rgba(30, 20, 20, 0.95);
 }
 
 [data-theme='dark'] .contacts-header .ant-card-body {
-  background: linear-gradient(135deg, #3a1f1f 0%, #4a2a2a 50%, #3a1f1f 100%);
+  background: linear-gradient(135deg, rgba(60, 30, 30, 0.95) 0%, rgba(80, 40, 40, 0.9) 50%, rgba(60, 30, 30, 0.95) 100%);
 }
 
 [data-theme='dark'] .contacts-list-card {
-  background: #1f1f1f;
-  border-color: #8b0000;
+  background: rgba(25, 20, 20, 0.95);
+  border-color: rgba(255, 77, 79, 0.3);
 }
 
-/* 设置页面春节样式 - 增强版 */
+/* 设置页面 */
 .settings-page {
-  min-height: calc(100vh - 64px);
-  background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 50%, #ffebee 100%);
-  padding: 24px;
+  min-height: calc(100vh - 70px);
+  padding: 32px;
 }
 
 .settings-content {
@@ -206,222 +557,108 @@
 }
 
 .settings-header {
-  margin-bottom: 24px;
-  border-radius: 16px;
-  border: 3px solid #ffccc7;
+  margin-bottom: 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 77, 79, 0.3);
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 8px 30px rgba(255, 77, 79, 0.15),
+    0 0 60px rgba(255, 77, 79, 0.05);
 }
 
 .settings-header .ant-card-body {
-  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 50%, #fff1f0 100%);
+  background: linear-gradient(135deg, rgba(255, 241, 240, 0.95) 0%, rgba(255, 204, 199, 0.9) 50%, rgba(255, 241, 240, 0.95) 100%);
   background-size: 200% 200%;
-  animation: cardGradient 6s ease infinite;
-  padding: 20px 24px;
+  animation: cardGradient 8s ease infinite;
+  padding: 24px 32px;
 }
 
 .settings-card {
-  margin-bottom: 16px;
-  border-radius: 12px;
-  border: 2px solid #ffccc7;
-  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.1);
-  transition: all 0.3s ease;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 77, 79, 0.2);
+  box-shadow: 0 4px 15px rgba(255, 77, 79, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .settings-card:hover {
-  box-shadow: 0 4px 20px rgba(255, 77, 79, 0.2);
-  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(255, 77, 79, 0.2),
+    0 0 50px rgba(255, 77, 79, 0.1);
+  transform: translateY(-4px);
+  border-color: rgba(255, 77, 79, 0.4);
 }
 
 [data-theme='dark'] .settings-page {
-  background: linear-gradient(135deg, #2a1f1f 0%, #1f1a1a 50%, #1a1515 100%);
+  background: transparent;
 }
 
 [data-theme='dark'] .settings-header {
-  border-color: #8b0000;
+  border-color: rgba(255, 77, 79, 0.4);
+  background: rgba(30, 20, 20, 0.95);
 }
 
 [data-theme='dark'] .settings-header .ant-card-body {
-  background: linear-gradient(135deg, #3a1f1f 0%, #4a2a2a 50%, #3a1f1f 100%);
+  background: linear-gradient(135deg, rgba(60, 30, 30, 0.95) 0%, rgba(80, 40, 40, 0.9) 50%, rgba(60, 30, 30, 0.95) 100%);
 }
 
 [data-theme='dark'] .settings-card {
-  background: #1f1f1f;
-  border-color: #8b0000;
+  background: rgba(25, 20, 20, 0.95);
+  border-color: rgba(255, 77, 79, 0.3);
 }
 
 [data-theme='dark'] .settings-card:hover {
-  box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
+  box-shadow: 
+    0 8px 25px rgba(255, 77, 79, 0.3),
+    0 0 50px rgba(255, 77, 79, 0.15);
 }
 
-/* 按钮春节样式 - 增强版 */
-.ant-btn-primary {
-  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
-  border: none;
-  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.4);
-  transition: all 0.3s ease;
-  border-radius: 6px;
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 16px;
+    height: 60px;
+  }
+  
+  .app-title {
+    font-size: 18px;
+  }
+  
+  .app-menu .ant-menu-item {
+    padding: 0 12px;
+    font-size: 14px;
+  }
+  
+  .app-content {
+    padding: 16px;
+  }
+  
+  .contacts-page,
+  .settings-page {
+    padding: 16px;
+  }
+  
+  .contacts-header,
+  .settings-header {
+    border-radius: 12px;
+  }
+  
+  .contacts-list-card,
+  .settings-card {
+    border-radius: 12px;
+  }
 }
 
-.ant-btn-primary:hover {
-  background: linear-gradient(135deg, #ff7875 0%, #ff4d4f 100%);
-  box-shadow: 0 6px 18px rgba(255, 77, 79, 0.5);
-  transform: translateY(-2px);
-}
-
-.ant-btn-primary:active {
-  transform: translateY(0);
-}
-
-/* 表格春节样式 - 增强版 */
-.ant-table {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
-.ant-table-thead > tr > th {
-  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 100%);
-  color: #ff4d4f;
-  font-weight: bold;
-  border-bottom: 2px solid #ffccc7;
-}
-
-.ant-table-tbody > tr:hover > td {
-  background: #fff5f5 !important;
-}
-
-/* 模态框春节样式 - 增强版 */
-.ant-modal-header {
-  background: linear-gradient(135deg, #fff1f0 0%, #ffccc7 100%);
-  border-bottom: 3px solid #ffccc7;
-  padding: 16px 24px;
-}
-
-.ant-modal-title {
-  color: #ff4d4f;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.ant-modal-content {
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* 表单春节样式 - 增强版 */
-.ant-form-item-label > label {
-  color: #333;
-  font-weight: 500;
-}
-
-.ant-input,
-.ant-select-selector {
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.ant-input:hover,
-.ant-select:hover .ant-select-selector {
-  border-color: #ff7875;
-}
-
-.ant-input:focus,
-.ant-select-focused .ant-select-selector {
-  border-color: #ff4d4f;
-  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.1);
-}
-
-/* 标签春节样式 - 增强版 */
-.ant-tag {
-  border-radius: 6px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.ant-tag:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 卡片春节样式 - 增强版 */
-.ant-card {
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.ant-card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-/* 时间线春节样式 - 增强版 */
-.ant-timeline-item-tail {
-  border-left: 3px solid #ffccc7;
-}
-
-.ant-timeline-item-head {
-  background: #fff;
-  border: 3px solid #ffccc7;
-}
-
-/* 统计数字春节样式 - 增强版 */
-.ant-statistic-title {
-  color: #666;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.ant-statistic-content {
-  font-size: 28px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.ant-statistic:hover .ant-statistic-content {
-  transform: scale(1.05);
-}
-
-/* 滚动条样式 - 春节主题 */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f5f5f5;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #ffccc7 0%, #ff7875 100%);
-  border-radius: 5px;
-  border: 2px solid #f5f5f5;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #ff7875 0%, #ff4d4f 100%);
-}
-
-/* 添加节日粒子背景效果 */
-.app-content::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(255, 77, 79, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(255, 120, 117, 0.02) 0%, transparent 50%);
-}
-
-[data-theme='dark'] .app-content::before {
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(255, 77, 79, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(255, 120, 117, 0.03) 0%, transparent 50%);
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .app-logo svg {
+    width: 20px;
+    height: 20px;
+  }
 }

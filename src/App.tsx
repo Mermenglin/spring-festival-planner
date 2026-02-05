@@ -8,6 +8,8 @@ import CalendarView from '@/pages/CalendarView';
 import Contacts from '@/pages/Contacts';
 import Settings from '@/pages/Settings';
 import SpringFestivalDecorations from '@/components/SpringFestivalDecorations/SpringFestivalDecorations';
+import Fireworks from '@/components/Fireworks';
+import TechEffects from '@/components/TechEffects';
 import './App.css';
 
 const { Header, Content } = Layout;
@@ -32,23 +34,32 @@ const menuItems = [
   },
 ];
 
-const renderContent = (currentKey: MenuKey) => {
+const renderContent = (currentKey: MenuKey, onFireworkClick: () => void, isPlaying: boolean, onStopFireworks: () => void) => {
   switch (currentKey) {
     case 'calendar':
-      return <CalendarView />;
+      return <CalendarView onFireworkClick={onFireworkClick} isPlaying={isPlaying} onStopFireworks={onStopFireworks} />;
     case 'contacts':
       return <Contacts />;
     case 'settings':
       return <Settings />;
     default:
-      return <CalendarView />;
+      return <CalendarView onFireworkClick={onFireworkClick} isPlaying={isPlaying} onStopFireworks={onStopFireworks} />;
   }
 };
 
 const AppContent: React.FC = () => {
   const [currentKey, setCurrentKey] = useState<MenuKey>('calendar');
+  const [isFireworksPlaying, setIsFireworksPlaying] = useState(false);
   const { darkAlgorithm, defaultAlgorithm } = theme;
   const { theme: currentTheme } = useApp();
+
+  const handleFireworkClick = () => {
+    setIsFireworksPlaying(true);
+  };
+
+  const handleStopFireworks = () => {
+    setIsFireworksPlaying(false);
+  };
 
   return (
     <ConfigProvider
@@ -59,8 +70,14 @@ const AppContent: React.FC = () => {
         },
       }}
     >
-      {/* 全局春节装饰 */}
-      <SpringFestivalDecorations />
+      {/* 全局春节装饰 - 播放烟花时隐藏以节省算力 */}
+      {!isFireworksPlaying && <SpringFestivalDecorations />}
+      
+      {/* 烟花效果背景 */}
+      {isFireworksPlaying && <Fireworks isPlaying={isFireworksPlaying} onPlayStateChange={setIsFireworksPlaying} />}
+      
+      {/* 科技感动画效果 */}
+      <TechEffects />
       
       <Layout className="app-layout">
         <Header className="app-header">
@@ -77,7 +94,7 @@ const AppContent: React.FC = () => {
           />
         </Header>
         <Content className="app-content">
-          {renderContent(currentKey)}
+          {renderContent(currentKey, handleFireworkClick, isFireworksPlaying, handleStopFireworks)}
         </Content>
       </Layout>
     </ConfigProvider>

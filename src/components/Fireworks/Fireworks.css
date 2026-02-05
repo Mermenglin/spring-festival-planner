@@ -1,0 +1,23 @@
+.fireworks-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 200;
+  background: transparent;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .fireworks-canvas {
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fireworks-canvas {
+    display: none;
+  }
+}
